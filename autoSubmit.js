@@ -75,12 +75,16 @@ function applyConditionalRules(questionId, originalOptions, previousAnswers, con
 
         if (conditionMet) {
             // 条件满足，应用权重调整
-            const targetOption = rule.effect.targetOption;
             const multiplier = rule.effect.weightMultiplier || 1;
-
-            if (adjustedOptions[targetOption] !== undefined) {
-                adjustedOptions[targetOption] *= multiplier;
-                console.log(`    💡 应用条件规则: Q${conditionQuestionId}选择了${actualAnswer}, Q${questionId}选项${targetOption}权重调整为${adjustedOptions[targetOption]}`);
+            
+            // 支持单个选项或多个选项
+            const targetOptions = rule.effect.targetOptions || (rule.effect.targetOption ? [rule.effect.targetOption] : []);
+            
+            for (const targetOption of targetOptions) {
+                if (adjustedOptions[targetOption] !== undefined) {
+                    adjustedOptions[targetOption] *= multiplier;
+                    console.log(`    💡 应用条件规则: Q${conditionQuestionId}选择了${actualAnswer}, Q${questionId}选项${targetOption}权重调整为${adjustedOptions[targetOption]}`);
+                }
             }
         }
     }
