@@ -1,0 +1,31 @@
+# 依赖目录
+node_modules/
+
+# 运行时生成的文件
+survey_structure.json
+captured_request.json
+
+# 日志文件
+*.log
+npm-debug.log*
+
+# 环境配置
+.env
+.env.local
+
+# 编辑器配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.temp
+
+# 浏览器缓存
+playwright/.cache/
